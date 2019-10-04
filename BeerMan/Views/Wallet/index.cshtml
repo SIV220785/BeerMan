@@ -1,0 +1,11 @@
+﻿@model List<BeerMan.Models.AspNetUsers>
+@{
+    ViewBag.Title = "index";
+}
+<h2>index</h2>
+
+@foreach (var user in Model)
+{
+    @user.Email;
+    <br/>
+}

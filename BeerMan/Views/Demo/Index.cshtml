@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<style>
+    input {
+        border: 1px solid black;
+    }
+</style>
+
+<div>
+    <form method="post" action="/Demo/Post">
+        <div>
+            number
+            <input name="num1" />
+            <input name="num2" value="5"/>
+            <input name="num3" value="10"/>
+        </div>
+
+        <div>
+            str
+            <input name="str1" />
+            <input name="str2" value="312321321321321321321"/>
+            <input name="str3" value="111"/>
+        </div>
+
+        <div>
+            DateTime
+            <input name="date1" />
+            <input name="date2" value="2019.01.01"/>
+            <input name="date3" value="Sunday"/>
+        </div>
+
+        <div> 
+            checkBox
+            <input type="checkbox" name="name1" value="1" />
+            <input type="checkbox" name="name1" value="2" />
+            <input type="checkbox" name="name1" value="3" />
+        </div>
+        
+        <button id="btnSend">Send</button>
+    </form>
+</div>
+
