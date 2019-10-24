@@ -1,11 +1,28 @@
-﻿@model List<BeerMan.Models.AspNetUsers>
-@{
-    ViewBag.Title = "index";
-}
-<h2>index</h2>
+﻿@model BeerMan.Models.Wallet
 
-@foreach (var user in Model)
-{
-    @user.Email;
-    <br/>
-}
+
+<body>
+    <div>
+        @if (Model == null)
+        {
+            <p>No Wallet </p>
+            <h3> Add wallet</h3>
+            <form method="post" action="addWallet">
+                <input type="submit" value="Add Wallet" />
+            </form>
+        }
+        else
+        {
+            <p>@Model.Id</p>
+            foreach (var item in Model.Transactions)
+            {
+                <p>@item.Amount</p>
+                <p>@item.TransactionDate</p>
+                <p>@item.Type</p>
+                <br />
+            }
+            <button onclick="window.location='http://localhost:53880/Transaction/Index'">Add Transaction</button>
+        }
+    </div>
+</body>
+

@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -26,6 +27,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <Use64BitIISExpress />
+    <TypeScriptToolsVersion>3.5</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -118,6 +120,7 @@
     <Reference Include="Ninject.Web.Mvc, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.MVC5.3.3.0\lib\net45\Ninject.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="RabbitMQ.Client, Version=5.0.0.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
       <HintPath>..\packages\RabbitMQ.Client.5.1.1\lib\net451\RabbitMQ.Client.dll</HintPath>
     </Reference>
@@ -249,6 +252,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\CoinsController.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\DefaultControllers\HomeController.cs" />
     <Compile Include="Controllers\DefaultControllers\ManageController.cs" />
     <Compile Include="Controllers\DeliveriesController.cs" />
@@ -258,14 +262,95 @@
     <Compile Include="Controllers\FriendsController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\PartiesController.cs" />
-    <Compile Include="Controllers\TransactionsController.cs" />
+    <Compile Include="Controllers\PhotoController.cs" />
+    <Compile Include="Controllers\TransactionController.cs" />
     <Compile Include="Controllers\WalletController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201909261808301_Start.cs" />
-    <Compile Include="Migrations\201909261808301_Start.Designer.cs">
-      <DependentUpon>201909261808301_Start.cs</DependentUpon>
+    <Compile Include="Migrations\201910101303055_NewBD.cs" />
+    <Compile Include="Migrations\201910101303055_NewBD.Designer.cs">
+      <DependentUpon>201910101303055_NewBD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910102042249_AddInit.cs" />
+    <Compile Include="Migrations\201910102042249_AddInit.Designer.cs">
+      <DependentUpon>201910102042249_AddInit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910110824570_aspUser.cs" />
+    <Compile Include="Migrations\201910110824570_aspUser.Designer.cs">
+      <DependentUpon>201910110824570_aspUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910111210514_aspUser1.cs" />
+    <Compile Include="Migrations\201910111210514_aspUser1.Designer.cs">
+      <DependentUpon>201910111210514_aspUser1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910121052384_User2.cs" />
+    <Compile Include="Migrations\201910121052384_User2.Designer.cs">
+      <DependentUpon>201910121052384_User2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910121249039_User3.cs" />
+    <Compile Include="Migrations\201910121249039_User3.Designer.cs">
+      <DependentUpon>201910121249039_User3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910122202106_transac.cs" />
+    <Compile Include="Migrations\201910122202106_transac.Designer.cs">
+      <DependentUpon>201910122202106_transac.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910122214398_transac1.cs" />
+    <Compile Include="Migrations\201910122214398_transac1.Designer.cs">
+      <DependentUpon>201910122214398_transac1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910122254051_transac2.cs" />
+    <Compile Include="Migrations\201910122254051_transac2.Designer.cs">
+      <DependentUpon>201910122254051_transac2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910122310263_transac3.cs" />
+    <Compile Include="Migrations\201910122310263_transac3.Designer.cs">
+      <DependentUpon>201910122310263_transac3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910131344538_transac4.cs" />
+    <Compile Include="Migrations\201910131344538_transac4.Designer.cs">
+      <DependentUpon>201910131344538_transac4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910131649150_AddPhoto.cs" />
+    <Compile Include="Migrations\201910131649150_AddPhoto.Designer.cs">
+      <DependentUpon>201910131649150_AddPhoto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910131655443_AddPhoto1.cs" />
+    <Compile Include="Migrations\201910131655443_AddPhoto1.Designer.cs">
+      <DependentUpon>201910131655443_AddPhoto1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910160909489_Orders.cs" />
+    <Compile Include="Migrations\201910160909489_Orders.Designer.cs">
+      <DependentUpon>201910160909489_Orders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910161020095_Orders1.cs" />
+    <Compile Include="Migrations\201910161020095_Orders1.Designer.cs">
+      <DependentUpon>201910161020095_Orders1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910170921084_Order2.cs" />
+    <Compile Include="Migrations\201910170921084_Order2.Designer.cs">
+      <DependentUpon>201910170921084_Order2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910170932315_Order3.cs" />
+    <Compile Include="Migrations\201910170932315_Order3.Designer.cs">
+      <DependentUpon>201910170932315_Order3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910171156115_Order4.cs" />
+    <Compile Include="Migrations\201910171156115_Order4.Designer.cs">
+      <DependentUpon>201910171156115_Order4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910241009405_24.10.cs" />
+    <Compile Include="Migrations\201910241009405_24.10.Designer.cs">
+      <DependentUpon>201910241009405_24.10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910241036567_24.10.02.cs" />
+    <Compile Include="Migrations\201910241036567_24.10.02.Designer.cs">
+      <DependentUpon>201910241036567_24.10.02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910241046209_24.10.03.cs" />
+    <Compile Include="Migrations\201910241046209_24.10.03.Designer.cs">
+      <DependentUpon>201910241046209_24.10.03.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -273,8 +358,8 @@
     <Compile Include="Models\AspNetUserClaims.cs" />
     <Compile Include="Models\AspNetUserLogins.cs" />
     <Compile Include="Models\AspNetUsers.cs" />
-    <Compile Include="Models\Coin.cs" />
     <Compile Include="Models\Courier.cs" />
+    <Compile Include="Models\CreateOrderModel.cs" />
     <Compile Include="Models\C__MigrationHistory.cs" />
     <Compile Include="Models\Delivery.cs" />
     <Compile Include="Models\DemoValid.cs" />
@@ -296,23 +381,45 @@
     <Compile Include="Validation\DemoValidation.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Img\BeerChat.jpg" />
+    <Content Include="Img\BeerParty.jpg" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\BeerHub.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\CSS\styles.css" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jExpand.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.signalR-2.4.1.js" />
     <Content Include="Scripts\jquery.signalR-2.4.1.min.js" />
@@ -321,8 +428,16 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -363,21 +478,103 @@
     <Content Include="Views\Wallet\index.cshtml" />
     <Content Include="Views\Chat\Index.cshtml" />
     <Content Include="Views\Demo\Index.cshtml" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Wallet\AddWallet.cshtml" />
+    <Content Include="Views\Transaction\Index.cshtml" />
+    <Content Include="Views\Food\AddFood.cshtml" />
+    <Content Include="Views\Food\Index.cshtml" />
+    <Content Include="Views\Photo\Index.cshtml" />
+    <Content Include="Views\Photo\Create.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\Orders\PayOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\Initializer\" />
+    <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201909261808301_Start.resx">
-      <DependentUpon>201909261808301_Start.cs</DependentUpon>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201910101303055_NewBD.resx">
+      <DependentUpon>201910101303055_NewBD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910102042249_AddInit.resx">
+      <DependentUpon>201910102042249_AddInit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910110824570_aspUser.resx">
+      <DependentUpon>201910110824570_aspUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910111210514_aspUser1.resx">
+      <DependentUpon>201910111210514_aspUser1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910121052384_User2.resx">
+      <DependentUpon>201910121052384_User2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910121249039_User3.resx">
+      <DependentUpon>201910121249039_User3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910122202106_transac.resx">
+      <DependentUpon>201910122202106_transac.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910122214398_transac1.resx">
+      <DependentUpon>201910122214398_transac1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910122254051_transac2.resx">
+      <DependentUpon>201910122254051_transac2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910122310263_transac3.resx">
+      <DependentUpon>201910122310263_transac3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910131344538_transac4.resx">
+      <DependentUpon>201910131344538_transac4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910131649150_AddPhoto.resx">
+      <DependentUpon>201910131649150_AddPhoto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910131655443_AddPhoto1.resx">
+      <DependentUpon>201910131655443_AddPhoto1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910160909489_Orders.resx">
+      <DependentUpon>201910160909489_Orders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910161020095_Orders1.resx">
+      <DependentUpon>201910161020095_Orders1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910170921084_Order2.resx">
+      <DependentUpon>201910170921084_Order2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910170932315_Order3.resx">
+      <DependentUpon>201910170932315_Order3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910171156115_Order4.resx">
+      <DependentUpon>201910171156115_Order4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910241009405_24.10.resx">
+      <DependentUpon>201910241009405_24.10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910241036567_24.10.02.resx">
+      <DependentUpon>201910241036567_24.10.02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910241046209_24.10.03.resx">
+      <DependentUpon>201910241046209_24.10.03.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -385,6 +582,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">

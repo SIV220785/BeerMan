@@ -1,0 +1,86 @@
+﻿@model List<BeerMan.Models.Order>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Неоплаченные заказы</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <thead class="panel panel-primary">
+                <tr>
+                    <th>№ Заказа</th>
+                    <th>Просмотр тавара</th>
+                    <th>Время оформления </th>
+                    <th>Стоимость</th>
+                    <th>Оформить оплату</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in Model)
+                {
+                    <tr>
+                        <td>@product.Id</td>
+                        <td>
+                            <div class="panel-heading">
+                                <h2 class="panel-title">Тавары <input id="checkProduct1" type="checkbox" name="" value="" /></h2>
+                            </div>
+                            <div class="tableProduct">
+                                <div class="panel-body">
+                                    <table class="table">
+                                        <thead class="panel panel-primary">
+                                            <tr>
+                                                <th>№</th>
+                                                <th>Наименование</th>
+                                                <th>Стоимость</th>
+                                                <th>Количество</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var drink in product.Drinks)
+                                            {
+                                                <tr>
+                                                    <td>@drink.Name</td>
+                                                    <td>@drink.Cost</td>
+                                                    <td>@drink.Count  </td>
+                                                </tr>
+                                            }
+
+                                            @foreach (var drink in product.Foods)
+                                            {
+                                                <tr>
+                                                    <td>@drink.Name</td>
+                                                    <td>@drink.Cost</td>
+                                                    <td>@drink.Count  </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </td>
+                        <td>@product.CreateDate</td>
+                        <td>@product.Cost</td>
+                        <td><input id="checkBox_@product.Id" type="checkbox" value="@product.Id" name="сheckout" /> </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    document.getElementById('checkProduct1').onchange = function () {
+        debugger;
+        if (this.checked) {
+            document.getElementsByClassName('tableProduct').display = 'none';
+        }
+        else {
+            document.getElementsByClassName('tableProduct').display = 'block';
+        }
+    }
+</script>
+<style>
+    .tableProduct {
+        display: none
+    }
+</style>

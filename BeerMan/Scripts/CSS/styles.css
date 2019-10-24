@@ -1,0 +1,26 @@
+﻿h2 {
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 5px 4px 3px #999;
+    text-align:center;
+}
+
+p {
+    text-align:justify;
+}
+
+.carousel-caption {
+    font-weight: bold;
+    font-size:20px;
+}
+
+.url {
+    font-size: 28px;
+    font-weight: bold;
+    display:block;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 5px 4px 3px #999;
+    cursor:pointer;
+}
+

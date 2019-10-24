@@ -3,7 +3,7 @@ namespace BeerMan.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Start : DbMigration
+    public partial class NewBD : DbMigration
     {
         public override void Up()
         {
@@ -20,7 +20,7 @@ namespace BeerMan.Migrations
                 "dbo.AspNetUsers",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.String(nullable: false, maxLength: 128),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -35,10 +35,9 @@ namespace BeerMan.Migrations
                         FirstName = c.String(),
                         LastName = c.String(),
                         BirthDay = c.DateTime(nullable: false),
-                        WalletId = c.Int(nullable: false),
                         UserName = c.String(nullable: false, maxLength: 256),
                         Party_Id = c.Int(),
-                        AspNetUsers_Id = c.Int(),
+                        AspNetUsers_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Parties", t => t.Party_Id)
@@ -51,7 +50,7 @@ namespace BeerMan.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        UserId = c.Int(nullable: false),
+                        UserId = c.String(nullable: false, maxLength: 128),
                         ClaimType = c.String(),
                         ClaimValue = c.String(),
                     })
@@ -65,7 +64,7 @@ namespace BeerMan.Migrations
                     {
                         LoginProvider = c.String(nullable: false, maxLength: 128),
                         ProviderKey = c.String(nullable: false, maxLength: 128),
-                        UserId = c.Int(nullable: false),
+                        UserId = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => new { t.LoginProvider, t.ProviderKey, t.UserId })
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
@@ -107,7 +106,7 @@ namespace BeerMan.Migrations
                         CreateDate = c.DateTime(nullable: false),
                         UserID = c.Int(nullable: false),
                         PartyId = c.Int(nullable: false),
-                        AspNetUsers_Id = c.Int(),
+                        AspNetUsers_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.AspNetUsers_Id)
@@ -138,7 +137,7 @@ namespace BeerMan.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Link = c.String(),
                         UserID = c.Int(nullable: false),
-                        AspNetUsers_Id = c.Int(),
+                        AspNetUsers_Id = c.String(maxLength: 128),
                         Party_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
@@ -172,15 +171,25 @@ namespace BeerMan.Migrations
                         StartPartyDate = c.DateTime(nullable: false),
                         About = c.String(),
                         UserId = c.Int(nullable: false),
-                        AspNetUser_Id = c.Int(),
-                        AspNetUsers_Id = c.Int(),
+                        AspNetUser_Id = c.String(maxLength: 128),
+                        AspNetUsers_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.AspNetUser_Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.AspNetUsers_Id)
                 .Index(t => t.AspNetUser_Id)
                 .Index(t => t.AspNetUsers_Id);
-                               
+            
+            CreateTable(
+                "dbo.Wallets",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.AspNetUsers", t => t.Id)
+                .Index(t => t.Id);
+            
             CreateTable(
                 "dbo.Coins",
                 c => new
@@ -189,22 +198,11 @@ namespace BeerMan.Migrations
                         Amount = c.Decimal(nullable: false, precision: 18, scale: 2),
                         Currency = c.String(),
                         WalletId = c.Int(nullable: false),
+                        Wallet_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Wallets", t => t.WalletId, cascadeDelete: true)
-                .Index(t => t.WalletId);
-            
-            CreateTable(
-                "dbo.Wallets",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        UserId = c.Int(nullable: false),
-                        AspNetUsers_Id = c.Int(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.AspNetUsers_Id)
-                .Index(t => t.AspNetUsers_Id);
+                .ForeignKey("dbo.Wallets", t => t.Wallet_Id)
+                .Index(t => t.Wallet_Id);
             
             CreateTable(
                 "dbo.Transactions",
@@ -217,19 +215,21 @@ namespace BeerMan.Migrations
                         Type = c.Int(nullable: false),
                         WalletId = c.Int(nullable: false),
                         OrderId = c.Int(nullable: false),
+                        Wallet_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Orders", t => t.OrderId, cascadeDelete: true)
-                .ForeignKey("dbo.Wallets", t => t.WalletId, cascadeDelete: true)
-                .Index(t => t.WalletId)
-                .Index(t => t.OrderId);
+                .ForeignKey("dbo.Wallets", t => t.Wallet_Id)
+                .Index(t => t.OrderId)
+                .Index(t => t.Wallet_Id);
+                        
             
             CreateTable(
                 "dbo.DeliveryOrderAspNetUsers",
                 c => new
                     {
                         DeliveryOrder_Id = c.Int(nullable: false),
-                        AspNetUsers_Id = c.Int(nullable: false),
+                        AspNetUsers_Id = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => new { t.DeliveryOrder_Id, t.AspNetUsers_Id })
                 .ForeignKey("dbo.DeliveryOrders", t => t.DeliveryOrder_Id, cascadeDelete: true)
@@ -242,7 +242,7 @@ namespace BeerMan.Migrations
                 c => new
                     {
                         RoleId = c.Int(nullable: false),
-                        UserId = c.Int(nullable: false),
+                        UserId = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => new { t.RoleId, t.UserId })
                 .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
@@ -254,12 +254,12 @@ namespace BeerMan.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.Transactions", "WalletId", "dbo.Wallets");
-            DropForeignKey("dbo.Transactions", "OrderId", "dbo.Orders");
-            DropForeignKey("dbo.Coins", "WalletId", "dbo.Wallets");
-            DropForeignKey("dbo.Wallets", "AspNetUsers_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Wallets", "Id", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Transactions", "Wallet_Id", "dbo.Wallets");
+            DropForeignKey("dbo.Transactions", "OrderId", "dbo.Orders");
+            DropForeignKey("dbo.Coins", "Wallet_Id", "dbo.Wallets");
             DropForeignKey("dbo.Parties", "AspNetUsers_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUsers", "AspNetUsers_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.DeliveryOrders", "OrderId", "dbo.Orders");
@@ -282,10 +282,10 @@ namespace BeerMan.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.DeliveryOrderAspNetUsers", new[] { "AspNetUsers_Id" });
             DropIndex("dbo.DeliveryOrderAspNetUsers", new[] { "DeliveryOrder_Id" });
+            DropIndex("dbo.Transactions", new[] { "Wallet_Id" });
             DropIndex("dbo.Transactions", new[] { "OrderId" });
-            DropIndex("dbo.Transactions", new[] { "WalletId" });
-            DropIndex("dbo.Wallets", new[] { "AspNetUsers_Id" });
-            DropIndex("dbo.Coins", new[] { "WalletId" });
+            DropIndex("dbo.Coins", new[] { "Wallet_Id" });
+            DropIndex("dbo.Wallets", new[] { "Id" });
             DropIndex("dbo.Parties", new[] { "AspNetUsers_Id" });
             DropIndex("dbo.Parties", new[] { "AspNetUser_Id" });
             DropIndex("dbo.Foods", new[] { "OrderId" });
@@ -304,10 +304,10 @@ namespace BeerMan.Migrations
             DropIndex("dbo.AspNetUsers", new[] { "Party_Id" });
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.DeliveryOrderAspNetUsers");
-            DropTable("dbo.Transactions");
-            DropTable("dbo.Wallets");
-            DropTable("dbo.Coins");
             DropTable("dbo.__MigrationHistory");
+            DropTable("dbo.Transactions");
+            DropTable("dbo.Coins");
+            DropTable("dbo.Wallets");
             DropTable("dbo.Parties");
             DropTable("dbo.Foods");
             DropTable("dbo.Photos");

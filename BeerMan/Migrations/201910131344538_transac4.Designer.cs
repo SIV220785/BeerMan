@@ -7,13 +7,13 @@ namespace BeerMan.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Start : IMigrationMetadata
+    public sealed partial class transac4 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Start));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(transac4));
         
         string IMigrationMetadata.Id
         {
-            get { return "201909261808301_Start"; }
+            get { return "201910131344538_transac4"; }
         }
         
         string IMigrationMetadata.Source

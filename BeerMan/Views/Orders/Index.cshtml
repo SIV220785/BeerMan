@@ -1,0 +1,43 @@
+﻿@model List<BeerMan.Models.Order>
+
+<form>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Неоплаченные заказы</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table">
+                <thead class="panel panel-primary">
+                    <tr>
+                        <th>№ Заказа</th>
+                        <th>Время оформления </th>
+                        <th>Еда</th>
+                        <th>Напитки</th>
+                        <th>Стоимость</th>
+                        <th>Оформить оплату</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</form>
+
+<p>
+    @Html.ActionLink("Добавить заказ", "Create", "orders", null, null)
+</p>
+
+<p>
+    @Html.ActionLink("Добавить заказ", "PayOrder", "orders", null, null)
+</p>
+
+
+
+
