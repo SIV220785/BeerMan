@@ -1,5 +1,7 @@
 ﻿@model List<BeerMan.Models.Order>
 
+
+
 <div class="panel panel-primary">
     <div class="panel-heading">
         <h3 class="panel-title">Неоплаченные заказы</h3>
@@ -22,9 +24,22 @@
                         <td>@product.Id</td>
                         <td>
                             <div class="panel-heading">
-                                <h2 class="panel-title">Тавары <input id="checkProduct1" type="checkbox" name="" value="" /></h2>
+                                <h2 class="panel-title">
+                                    Product 
+                                <input data-id="@product.Id" class="check-product" type="checkbox" name="" value="" />
+                                </h2>
+
                             </div>
-                            <div class="tableProduct">
+                        </td>
+
+                        <td>@product.CreateDate</td>
+                        <td>@product.Cost</td>
+                        <td><input id="checkBox_@product.Id" type="checkbox" value="@product.Id" name="сheckout" /> </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="5">
+                            <div class="table-product" data-product-id="@product.Id">
                                 <div class="panel-body">
                                     <table class="table">
                                         <thead class="panel panel-primary">
@@ -36,21 +51,22 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach (var drink in product.Drinks)
+                                            @*@foreach (var drink in product.Drinks)
                                             {
                                                 <tr>
                                                     <td>@drink.Name</td>
                                                     <td>@drink.Cost</td>
                                                     <td>@drink.Count  </td>
                                                 </tr>
-                                            }
+                                            }*@
 
-                                            @foreach (var drink in product.Foods)
+
+                                            @foreach (var food in product.Foods)
                                             {
                                                 <tr>
-                                                    <td>@drink.Name</td>
-                                                    <td>@drink.Cost</td>
-                                                    <td>@drink.Count  </td>
+                                                    <td>@food.Name</td>
+                                                    <td>@food.Cost</td>
+                                                    <td>@food.Count  </td>
                                                 </tr>
                                             }
                                         </tbody>
@@ -58,9 +74,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td>@product.CreateDate</td>
-                        <td>@product.Cost</td>
-                        <td><input id="checkBox_@product.Id" type="checkbox" value="@product.Id" name="сheckout" /> </td>
+
                     </tr>
                 }
             </tbody>
@@ -68,19 +82,30 @@
     </div>
 </div>
 
-<script>
-    document.getElementById('checkProduct1').onchange = function () {
-        debugger;
-        if (this.checked) {
-            document.getElementsByClassName('tableProduct').display = 'none';
-        }
-        else {
-            document.getElementsByClassName('tableProduct').display = 'block';
-        }
-    }
-</script>
+
+
+
+
 <style>
-    .tableProduct {
-        display: none
+    .table-product {
+        display: none;
     }
 </style>
+
+@section scripts {
+    <script>
+        $(function () {
+
+            $('.check-product').on("change", function () {
+                if (this.checked) {
+                    $('[data-product-id="' + $(this).data('id') + '"]').show()
+                    //$(this).parent().parent().parent().children('.table-product').show()
+                }
+                else {
+                    $('[data-product-id="' + $(this).data('id') + '"]').hide()
+                }
+            })
+        })
+    </script>
+}
+

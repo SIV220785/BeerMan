@@ -7,23 +7,28 @@ using System.Web.Mvc;
 
 namespace BeerMan.Controllers
 {
+    [RoutePrefix("Photo")]
     public class PhotoController : Controller
     {
         [Inject]
         public BeermanContext DB { get; set; }
 
+        [Route("Index")]
         public ActionResult Index()
         {
             var photos = DB.Photos.ToList();
             return View(photos);
         }
 
+        [Route("Create")]
         public ActionResult Create()
         {
             return View();
         }
 
+        // domain/create
         [HttpPost]
+        [Route("Create")]
         public ActionResult Create(Photo photo, HttpPostedFileBase uploadImage)
         {
             if (ModelState.IsValid && uploadImage != null)

@@ -320,37 +320,9 @@
     <Compile Include="Migrations\201910131655443_AddPhoto1.Designer.cs">
       <DependentUpon>201910131655443_AddPhoto1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201910160909489_Orders.cs" />
-    <Compile Include="Migrations\201910160909489_Orders.Designer.cs">
-      <DependentUpon>201910160909489_Orders.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910161020095_Orders1.cs" />
-    <Compile Include="Migrations\201910161020095_Orders1.Designer.cs">
-      <DependentUpon>201910161020095_Orders1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910170921084_Order2.cs" />
-    <Compile Include="Migrations\201910170921084_Order2.Designer.cs">
-      <DependentUpon>201910170921084_Order2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910170932315_Order3.cs" />
-    <Compile Include="Migrations\201910170932315_Order3.Designer.cs">
-      <DependentUpon>201910170932315_Order3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910171156115_Order4.cs" />
-    <Compile Include="Migrations\201910171156115_Order4.Designer.cs">
-      <DependentUpon>201910171156115_Order4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910241009405_24.10.cs" />
-    <Compile Include="Migrations\201910241009405_24.10.Designer.cs">
-      <DependentUpon>201910241009405_24.10.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910241036567_24.10.02.cs" />
-    <Compile Include="Migrations\201910241036567_24.10.02.Designer.cs">
-      <DependentUpon>201910241036567_24.10.02.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910241046209_24.10.03.cs" />
-    <Compile Include="Migrations\201910241046209_24.10.03.Designer.cs">
-      <DependentUpon>201910241046209_24.10.03.cs</DependentUpon>
+    <Compile Include="Migrations\201910241646545_new .cs" />
+    <Compile Include="Migrations\201910241646545_new .Designer.cs">
+      <DependentUpon>201910241646545_new .cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -552,29 +524,8 @@
     <EmbeddedResource Include="Migrations\201910131655443_AddPhoto1.resx">
       <DependentUpon>201910131655443_AddPhoto1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910160909489_Orders.resx">
-      <DependentUpon>201910160909489_Orders.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910161020095_Orders1.resx">
-      <DependentUpon>201910161020095_Orders1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910170921084_Order2.resx">
-      <DependentUpon>201910170921084_Order2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910170932315_Order3.resx">
-      <DependentUpon>201910170932315_Order3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910171156115_Order4.resx">
-      <DependentUpon>201910171156115_Order4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910241009405_24.10.resx">
-      <DependentUpon>201910241009405_24.10.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910241036567_24.10.02.resx">
-      <DependentUpon>201910241036567_24.10.02.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910241046209_24.10.03.resx">
-      <DependentUpon>201910241046209_24.10.03.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201910241646545_new .resx">
+      <DependentUpon>201910241646545_new .cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
