@@ -10,6 +10,7 @@ namespace BeerMan.Models
         public int Id { get; set; }
         public decimal Cost { get; set; }
         public DateTime? CreateDate { get; set; }
+        public bool IsPayment { get; set; }
 
         public string AspNetUsersID { get; set; }
         public virtual AspNetUsers AspNetUsers { get; set; }

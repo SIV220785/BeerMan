@@ -9,7 +9,7 @@ namespace BeerMan.Models
     {
         static BeermanContext()
         {
-         
+
         }
 
         public BeermanContext()
@@ -60,6 +60,15 @@ namespace BeerMan.Models
                 .HasMany(e => e.Transactions)
                 .WithOptional(e => e.Wallet);
 
+            modelBuilder.Entity<Order>()
+                .HasMany(c => c.Foods)
+                .WithMany(p => p.Orders)
+                .Map(m =>
+                {
+                    m.ToTable("OrdersFood");
+                    m.MapLeftKey("OrderId");
+                    m.MapRightKey("FoodId");
+                });
         }
     }
 }

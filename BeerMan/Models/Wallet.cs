@@ -10,7 +10,7 @@ namespace BeerMan.Models
         [Key, ForeignKey("AspNetUsers")]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Id { get; set; }
-        public int Coins { get; set; }
+        public dynamic Coins { get; set; }
         public virtual AspNetUsers AspNetUsers { get; set; }
 
         public virtual ICollection<Transaction> Transactions { get; set; }

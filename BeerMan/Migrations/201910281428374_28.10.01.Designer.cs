@@ -7,13 +7,13 @@ namespace BeerMan.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class _new : IMigrationMetadata
+    public sealed partial class _281001 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(_new));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(_281001));
         
         string IMigrationMetadata.Id
         {
-            get { return "201910241646545_new "; }
+            get { return "201910281428374_28.10.01"; }
         }
         
         string IMigrationMetadata.Source

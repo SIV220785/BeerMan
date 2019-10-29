@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace BeerMan.Models
 {
     public class Drink
@@ -11,7 +13,11 @@ namespace BeerMan.Models
         public int? PhotoId { get; set; }
         public virtual Photo Photo { get; set; }
 
-        public int? OrderId { get; set; }
-        public virtual Order Order { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
+
+        public Drink()
+        {
+            Orders = new List<Order>();
+        }
     }
 }

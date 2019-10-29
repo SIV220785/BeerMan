@@ -320,9 +320,17 @@
     <Compile Include="Migrations\201910131655443_AddPhoto1.Designer.cs">
       <DependentUpon>201910131655443_AddPhoto1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201910241646545_new .cs" />
-    <Compile Include="Migrations\201910241646545_new .Designer.cs">
-      <DependentUpon>201910241646545_new .cs</DependentUpon>
+    <Compile Include="Migrations\201910251232022_25.10.02.cs" />
+    <Compile Include="Migrations\201910251232022_25.10.02.Designer.cs">
+      <DependentUpon>201910251232022_25.10.02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910281428374_28.10.01.cs" />
+    <Compile Include="Migrations\201910281428374_28.10.01.Designer.cs">
+      <DependentUpon>201910281428374_28.10.01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910281450552_28.10.02.cs" />
+    <Compile Include="Migrations\201910281450552_28.10.02.Designer.cs">
+      <DependentUpon>201910281450552_28.10.02.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -342,7 +350,9 @@
     <Compile Include="Models\BeermanContext.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Party.cs" />
+    <Compile Include="Models\PayOrderModel.cs" />
     <Compile Include="Models\Photo.cs" />
+    <Compile Include="Models\ProductsModel.cs" />
     <Compile Include="Models\SignalRUser.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Models\Wallet.cs" />
@@ -468,6 +478,8 @@
     <Content Include="Views\Orders\Index.cshtml" />
     <Content Include="Views\Orders\Create.cshtml" />
     <Content Include="Views\Orders\PayOrder.cshtml" />
+    <Content Include="Views\Drinks\Index.cshtml" />
+    <Content Include="Views\Drinks\AddDrink.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -524,8 +536,14 @@
     <EmbeddedResource Include="Migrations\201910131655443_AddPhoto1.resx">
       <DependentUpon>201910131655443_AddPhoto1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910241646545_new .resx">
-      <DependentUpon>201910241646545_new .cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201910251232022_25.10.02.resx">
+      <DependentUpon>201910251232022_25.10.02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910281428374_28.10.01.resx">
+      <DependentUpon>201910281428374_28.10.01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910281450552_28.10.02.resx">
+      <DependentUpon>201910281450552_28.10.02.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
