@@ -64,6 +64,7 @@ namespace BeerMan.Controllers
                     Db.Entry(user).State = EntityState.Modified;
                     Db.SaveChanges();
                     return RedirectToAction("index", "wallet");
+                    //
                 }             
             }
             return View(model);
