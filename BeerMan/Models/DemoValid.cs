@@ -4,8 +4,12 @@ namespace BeerMan.Models
 {
     public class DemoValid
     {
-        public int? num1 { get; set; }
-        public int? num2 { get; set; }
+        public decimal? AddMoney { get; set; }
+
+
+
+        public int? Num1 { get; set; }
+        public int? Num2 { get; set; }
         public int? num3 { get; set; }
 
         public string str1 { get; set; }

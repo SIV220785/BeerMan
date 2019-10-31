@@ -14,9 +14,14 @@ namespace BeerMan.Models
             AspNetUserClaims = new HashSet<AspNetUserClaims>();
             AspNetUserLogins = new HashSet<AspNetUserLogins>();
             AspNetRoles = new HashSet<AspNetRoles>();
+            Friends = new List<AspNetUsers>();
+            Deliveries = new List<DeliveryOrder>();
+            Parties = new List<Party>();
+            Orders = new List<Order>();               
         }
 
-        public int Id { get; set; }
+        [Key]
+        public string Id { get; set; }
 
         [StringLength(256)]
         public string Email { get; set; }
@@ -29,30 +34,28 @@ namespace BeerMan.Models
 
         public string PhoneNumber { get; set; }
 
-        public bool PhoneNumberConfirmed { get; set; }
+        public bool? PhoneNumberConfirmed { get; set; }
 
-        public bool TwoFactorEnabled { get; set; }
+        public bool? TwoFactorEnabled { get; set; }
 
         public DateTime? LockoutEndDateUtc { get; set; }
 
-        public bool LockoutEnabled { get; set; }
+        public bool? LockoutEnabled { get; set; }
 
-        public int AccessFailedCount { get; set; }
+        public int? AccessFailedCount { get; set; }
 
         public string NickName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public DateTime BirthDay { get; set; }
+        public DateTime? BirthDay { get; set; }
 
+        public virtual Wallet Wallet { get; set; }
 
-
-        public int WalletId { get; set; }
-        //public Wallet Wallet { get; set; }
-
-        public ICollection<AspNetUsers> Friends { get; set; }
-        public ICollection<DeliveryOrder> Deliveries { get; set; }
-        public ICollection<Party> Parties { get; set; }
-
+        public virtual ICollection<AspNetUsers> Friends { get; set; }
+        public virtual ICollection<DeliveryOrder> Deliveries { get; set; }
+        public virtual ICollection<Party> Parties { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
+        
 
         [Required]
         [StringLength(256)]

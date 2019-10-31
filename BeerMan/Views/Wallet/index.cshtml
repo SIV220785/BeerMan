@@ -1,11 +1,34 @@
-﻿@model List<BeerMan.Models.AspNetUsers>
-@{
-    ViewBag.Title = "index";
-}
-<h2>index</h2>
+﻿@model BeerMan.Models.Wallet
 
-@foreach (var user in Model)
-{
-    @user.Email;
-    <br/>
-}
+
+<body>
+    <div>
+        @if (Model == null)
+        {
+            <p>No Wallet </p>
+            <h3> Add wallet</h3>
+            <form method="post" action="addWallet">
+                <input type="submit" value="Add Wallet" />
+            </form>
+        }
+        else
+        {
+            <form action="/Wallet/AddMoney" method="post">
+                @Html.ValidationSummary(true)
+                <fieldset>
+                    <legend>У вас на счету : @Model.Coins р.</legend>
+
+                    <div class="editor-label">Пополнить счет</div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Coins)
+                        @Html.ValidationMessageFor(model => model.Coins)
+                    </div>
+                    <p>
+                        <input type="submit" value="Добавить" />
+                    </p>
+                </fieldset>
+            </form>
+        }
+    </div>
+</body>
+

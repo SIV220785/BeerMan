@@ -1,9 +1,11 @@
-﻿using BeerMan.SignalR;
+﻿using BeerMan.Models;
+using BeerMan.SignalR;
 using Microsoft.AspNet.SignalR;
+using Ninject;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 
@@ -11,9 +13,26 @@ namespace BeerMan.Controllers
 {
     public class HomeController : Controller
     {
+        [Inject]
+        public BeermanContext DB { get; set; }
         public ActionResult Index()
         {
-            SendMassage("Hello!!");
+            //var users = DB.AspNetUsers.ToList();
+
+            //if (users.Count() != 0)
+            //{
+            //    Wallet wallet = new Wallet()
+            //    {
+            //        Coins = 50,
+            //    };
+
+            //    users[0].Wallet = wallet;
+
+            //    DB.AspNetUsers.Attach(users[0]);
+            //    DB.Entry(users[0]).State= EntityState.Modified;
+            //    DB.SaveChanges();
+            //}
+            
             return View();
         }
 

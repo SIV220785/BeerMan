@@ -1,0 +1,122 @@
+﻿@model List<BeerMan.Models.Order>
+
+
+<div class="btn-group">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+        Menu <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+        <li><a href="http://localhost:53880/orders/Create">Новый заказ</a></li>
+        <li><a href="http://localhost:53880/orders/PayOrder">Неоплаченные заказы</a></li>
+        <li><a href="http://localhost:53880/home/Index">Вернутся на главную</a></li>
+    </ul>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">История заказов</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <thead class="panel panel-primary">
+                <tr>
+                    <th>№ Заказа</th>
+                    <th>Просмотр тавара</th>
+                    <th>Время оформления </th>
+                    <th>Стоимость</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in Model)
+                {
+                    if (product.IsPayment)
+                    {
+                        <tr>
+                            <td>@product.Id</td>
+                            <td>
+                                <div class="panel-heading">
+                                    <h2 class="panel-title">
+                                        Список заказа
+                                        <input data-id="@product.Id" class="check-product" type="checkbox" name="" value="" />
+                                    </h2>
+                                </div>
+                            </td>
+                            <td>@product.CreateDate</td>
+                            <td>@product.Cost</td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="5">
+                                <div class="table-product" data-product-id="@product.Id">
+                                    <div class="panel-body">
+                                        <table class="table">
+                                            <thead class="panel panel-primary">
+                                                <tr>
+                                                    <th>Наименование</th>
+                                                    <th>Стоимость</th>
+                                                    <th>Количество</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var food in product.Foods)
+                                                {
+                                                    <tr>
+                                                        <td>@food.Name</td>
+                                                        <td>@food.Cost</td>
+                                                        <td>@food.Count  </td>
+                                                    </tr>
+                                                }
+                                                @foreach (var drink in product.Drinks)
+                                                {
+                                                    <tr>
+                                                        <td>@drink.Name</td>
+                                                        <td>@drink.Cost</td>
+                                                        <td>@drink.Count  </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+<style>
+    .table-product {
+        display: none;
+    }
+</style>
+
+@section scripts {
+    <script>
+        $(function () {
+
+            $('.check-product').on('change', function () {
+                if (this.checked) {
+                    $('[data-product-id="' + $(this).data('id') + '"]').show()
+                    //$(this).parent().parent().parent().children('.table-product').show()
+                }
+                else {
+                    $('[data-product-id="' + $(this).data('id') + '"]').hide()
+                }
+            })
+        })
+    </script>
+}
+
+
+
+
+
+
+
+

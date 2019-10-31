@@ -1,0 +1,42 @@
+﻿@model List<BeerMan.Models.Drink>
+
+<form>
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            Menu <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="http://localhost:53880/drinks/AddDrink">Добавить напиток</a></li>
+            <li><a href="http://localhost:53880/home/Index">Вернутся на главную</a></li>
+        </ul>
+    </div>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-2 col-md-2 col-sm-2">
+                <table>
+                    <tr>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center">
+                            @Html.Raw("<img style='width:80px; height:60px;' src=\"data:image/jpeg;base64,"
+                                    + Convert.ToBase64String(item.Photo.Image) + "\" />")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => item.Cost) р
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        }
+    </div>
+</form>
+
+
+
+

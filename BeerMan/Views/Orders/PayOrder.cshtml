@@ -1,0 +1,171 @@
+﻿@model BeerMan.Models.AspNetUsers
+
+<div class="btn-group">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+        Menu <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+        <li><a href="http://localhost:53880/orders/Index">Исторя заказов</a></li>
+        <li><a href="http://localhost:53880/orders/Create">Новый заказ</a></li>
+        <li><a href="http://localhost:53880/home/Index">Вернутся на главную</a></li>
+    </ul>
+</div>
+
+<div>
+    @if (Model.Wallet == null)
+    {
+        <h3>У вас нет кошелька!</h3>
+        <form method="post" action="/Wallet/CreateWallet">
+            <input type="submit" value="Add Wallet" />
+        </form>
+    }
+    else
+    {
+        <h3>На вашем счету: @Model.Wallet.Coins рублей. </h3>
+    }
+</div>
+
+<form method="post" action="/Orders/PayOrder">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Неоплаченные заказы</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table">
+                <thead class="panel panel-primary">
+                    <tr>
+                        <th>№ Заказа</th>
+                        <th>Просмотр тавара</th>
+                        <th>Время оформления </th>
+                        <th>Стоимость</th>
+                        <th>Оформить оплату</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model.Orders)
+                    {
+                        if (!product.IsPayment)
+                        {
+                            <tr>
+                                <td>@product.Id</td>
+                                <td>
+                                    <div class="panel-heading">
+                                        <h2 class="panel-title">
+                                            Список заказа
+                                            <input data-id="@product.Id" class="check-product" type="checkbox" name="" value="" />
+                                        </h2>
+                                    </div>
+                                </td>
+                                <td>@product.CreateDate</td>
+                                <td>@product.Cost</td>
+                                <td><input class="check-pay-order" type="checkbox" value="@product.Id" name="orders" /> </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">
+                                    <div class="table-product" data-product-id="@product.Id">
+                                        <div class="panel-body">
+                                            <table class="table">
+                                                <thead class="panel panel-primary">
+                                                    <tr>
+                                                        <th>Наименование</th>
+                                                        <th>Стоимость</th>
+                                                        <th>Количество</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var food in product.Foods)
+                                                    {
+                                                        <tr>
+                                                            <td>@food.Name</td>
+                                                            <td>@food.Cost</td>
+                                                            <td>@food.Count  </td>
+                                                        </tr>
+                                                    }
+                                                    @foreach (var drink in product.Drinks)
+                                                    {
+                                                        <tr>
+                                                            <td>@drink.Name</td>
+                                                            <td>@drink.Cost</td>
+                                                            <td>@drink.Count  </td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="btn-add-pay">
+        <select name="typepaymet" class="combobox">
+            <option value="0">Cash</option>
+            <option value="1">Card</option>
+            <option value="2">Cashless</option>
+        </select>
+        <input type="submit" value="Add Payment" />
+    </div>
+</form>
+
+
+
+<style>
+    .table-product {
+        display: none;
+    }
+    .btn-add-pay {
+        display: none;
+    }
+</style>
+
+@section scripts {
+    <script>
+        $(function () {
+
+            $('.check-product').on('change', function () {
+                if (this.checked) {
+                    $('[data-product-id="' + $(this).data('id') + '"]').show()
+                    //$(this).parent().parent().parent().children('.table-product').show()
+                }
+                else {
+                    $('[data-product-id="' + $(this).data('id') + '"]').hide()
+                }
+            })
+        })
+    </script>
+
+    <script>
+        var a = "@Html.Raw(Model.Wallet)";
+        $(function () {
+            if (a == "") {
+                $('.check-pay-order').hide();
+            }
+            else {
+                $('.check-pay-order').show();
+            }
+
+        })
+    </script>
+
+    <script>
+        $(function () {
+            $('.check-pay-order').on('change', function () {
+                if (this.checked) {
+                    $('.btn-add-pay').show();
+                    $('.check-pay-order').hide();
+                    $(this).show();
+                }
+                else {
+                    $('.btn-add-pay').hide();
+                    $('.check-pay-order').show();
+                }
+            })
+        })
+    </script>
+}
+

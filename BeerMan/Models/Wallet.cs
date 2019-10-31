@@ -1,15 +1,24 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.ModelConfiguration;
 
 namespace BeerMan.Models
 {
     public class Wallet
     {
-        public int Id { get; set; }
+        [Key, ForeignKey("AspNetUsers")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public string Id { get; set; }
+        public decimal Coins { get; set; }
+        public virtual AspNetUsers AspNetUsers { get; set; }
 
-        public int UserId { get; set; }
-        public AspNetUsers AspNetUsers { get; set; }
+        public virtual ICollection<Transaction> Transactions { get; set; }
 
-        public ICollection<Transaction> Transactions { get; set; }
-        public ICollection<Coin> Coins { get; set; }
+        public Wallet()
+        {
+            Transactions = new List<Transaction>();
+        }  
     }
+
 }                      

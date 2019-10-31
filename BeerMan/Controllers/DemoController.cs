@@ -12,13 +12,14 @@ namespace BeerMan.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post (DemoValid model)
+        public ActionResult Post (Wallet model)
         {
             var validator = new DemoValidation();
             var valadatorResaul = validator.Validate(model);
             
                 if (!valadatorResaul.IsValid)
-            {                
+            { 
+                
             }     
             return View("Index");
         }

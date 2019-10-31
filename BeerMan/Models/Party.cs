@@ -17,7 +17,7 @@ namespace BeerMan.Models
         //[ForeignKey("UserId")]
         public AspNetUsers AspNetUser { get; set; }
 
-        public ICollection<Photo> Photos { get; set; }
+        //public ICollection<Photo> Photos { get; set; }
         public ICollection<AspNetUsers> AspNetUsers { get; set; }
         public ICollection<Order> Orders { get; set; }
 

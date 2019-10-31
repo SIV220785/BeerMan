@@ -7,22 +7,27 @@ namespace BeerMan.Models
 
     public partial class BeermanContext : DbContext
     {
+        static BeermanContext()
+        {
+
+        }
+
         public BeermanContext()
             : base("name=BeerManConnection")
         {
         }
+
+
 
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
-
-        public virtual DbSet<Coin> Coints { get; set; }
         public virtual DbSet<DeliveryOrder> Deliveries { get; set; }
         public virtual DbSet<Drink> Drinks { get; set; }
         public virtual DbSet<Food> Foods { get; set; }
-        public virtual DbSet<Photo> Fotos { get; set; }
+        public virtual DbSet<Photo> Photos { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Party> Parties { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
@@ -46,6 +51,21 @@ namespace BeerMan.Models
                 .HasMany(e => e.AspNetUserLogins)
                 .WithRequired(e => e.AspNetUsers)
                 .HasForeignKey(e => e.UserId);
+
+            modelBuilder.Entity<AspNetUsers>()
+                .HasOptional(w => w.Wallet)
+                .WithRequired(a => a.AspNetUsers);
+
+            modelBuilder.Entity<Order>()
+                .HasMany(c => c.Foods)
+                .WithMany(p => p.Orders)
+                .Map(m =>
+                {
+                    m.ToTable("OrdersFood");
+                    m.MapLeftKey("OrderId");
+                    m.MapRightKey("FoodId");
+                });
+
         }
     }
 }

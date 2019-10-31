@@ -1,0 +1,96 @@
+﻿@model  BeerMan.Models.ProductsModel
+
+<div class="btn-group">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+        Menu <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+        <li><a href="http://localhost:53880/orders/Index">Исторя заказов</a></li>
+        <li><a href="http://localhost:53880/orders/PayOrder">Неоплаченные заказы</a></li>
+        <li><a href="http://localhost:53880/home/Index">Вернутся на главную</a></li>
+    </ul>
+</div>
+
+<form action="/Orders/Create" method="post">
+    <div class="row">
+        @foreach (var food in Model.Foods)
+        {
+            <div class="col-lg-2 col-md-2 col-sm-2">
+                <table>
+                    <tr>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => food.Name)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center">
+                            @Html.Raw("<img style='width:80px; height:60px;' src=\"data:image/jpeg;base64,"
+                                    + Convert.ToBase64String(food.Photo.Image) + "\" />")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => food.Cost) р
+                        </td>
+                    </tr>
+                </table>
+                <p> </p>
+                <input class="tb-countProduct" placeholder="Количество" type="text" value="" name="countfoods" disabled="disabled" />
+                <br>
+                <input class="checkbox-Product" type="checkbox" value="@food.Id" name="foods" />
+            </div>
+        }
+    </div>
+    <div class="row">
+        @foreach (var drink in Model.Drinks)
+        {
+            <div class="col-lg-2 col-md-2 col-sm-2">
+                <table>
+                    <tr>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => drink.Name)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center">
+                            @Html.Raw("<img style='width:80px; height:60px;' src=\"data:image/jpeg;base64,"
+                                    + Convert.ToBase64String(drink.Photo.Image) + "\" />")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => drink.Cost) р
+                        </td>
+                    </tr>
+                </table>
+                <p> </p>
+                <input class="tb-countProduct" placeholder="Количество" type="text" value="" name="countdrinks" disabled="disabled" />
+                <br>
+                <input class="checkbox-Product" type="checkbox" value="@drink.Id" name="drinks" />
+            </div>
+        }
+    </div>
+    <input type="submit" value="Add" />
+</form>
+
+<style>
+    .tb-countProduct {
+        width: 100px;
+    }
+</style>
+
+@section scripts{
+    <script>
+
+        $(function () {
+            $('.checkbox-Product').on('change', function () {
+                if (this.checked) {
+                    $(this).parent().children('.tb-countProduct').prop("disabled", false);
+                }
+                else {
+                    $(this).parent().children('.tb-countProduct').prop("disabled", true);
+                }
+            })
+        })
+    </script>
+}
