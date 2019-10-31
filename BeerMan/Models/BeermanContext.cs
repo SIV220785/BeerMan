@@ -56,15 +56,20 @@ namespace BeerMan.Models
                 .HasOptional(w => w.Wallet)
                 .WithRequired(a => a.AspNetUsers);
 
-            modelBuilder.Entity<Order>()
-                .HasMany(c => c.Foods)
-                .WithMany(p => p.Orders)
-                .Map(m =>
-                {
-                    m.ToTable("OrdersFood");
-                    m.MapLeftKey("OrderId");
-                    m.MapRightKey("FoodId");
-                });
+            //modelBuilder.Entity<Order>()
+            //    .HasMany(c => c.Foods)
+            //    .WithMany(p => p.Orders)
+            //    .Map(m =>
+            //    {
+            //        m.ToTable("OrdersFood");
+            //        m.MapLeftKey("OrderId");
+            //        m.MapRightKey("FoodId");
+            //    });
+
+            //modelBuilder.Entity<Transaction>()
+            //    .HasOptional(t => t.Order)
+            //    .WithOptionalDependent(a => a.Transaction);
+            //    .WithRequired(o => o.Order);
 
         }
     }

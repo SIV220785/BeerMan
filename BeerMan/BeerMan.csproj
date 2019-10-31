@@ -268,77 +268,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201910101303055_NewBD.cs" />
-    <Compile Include="Migrations\201910101303055_NewBD.Designer.cs">
-      <DependentUpon>201910101303055_NewBD.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910102042249_AddInit.cs" />
-    <Compile Include="Migrations\201910102042249_AddInit.Designer.cs">
-      <DependentUpon>201910102042249_AddInit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910110824570_aspUser.cs" />
-    <Compile Include="Migrations\201910110824570_aspUser.Designer.cs">
-      <DependentUpon>201910110824570_aspUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910111210514_aspUser1.cs" />
-    <Compile Include="Migrations\201910111210514_aspUser1.Designer.cs">
-      <DependentUpon>201910111210514_aspUser1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910121052384_User2.cs" />
-    <Compile Include="Migrations\201910121052384_User2.Designer.cs">
-      <DependentUpon>201910121052384_User2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910121249039_User3.cs" />
-    <Compile Include="Migrations\201910121249039_User3.Designer.cs">
-      <DependentUpon>201910121249039_User3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910122202106_transac.cs" />
-    <Compile Include="Migrations\201910122202106_transac.Designer.cs">
-      <DependentUpon>201910122202106_transac.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910122214398_transac1.cs" />
-    <Compile Include="Migrations\201910122214398_transac1.Designer.cs">
-      <DependentUpon>201910122214398_transac1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910122254051_transac2.cs" />
-    <Compile Include="Migrations\201910122254051_transac2.Designer.cs">
-      <DependentUpon>201910122254051_transac2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910122310263_transac3.cs" />
-    <Compile Include="Migrations\201910122310263_transac3.Designer.cs">
-      <DependentUpon>201910122310263_transac3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910131344538_transac4.cs" />
-    <Compile Include="Migrations\201910131344538_transac4.Designer.cs">
-      <DependentUpon>201910131344538_transac4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910131649150_AddPhoto.cs" />
-    <Compile Include="Migrations\201910131649150_AddPhoto.Designer.cs">
-      <DependentUpon>201910131649150_AddPhoto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910131655443_AddPhoto1.cs" />
-    <Compile Include="Migrations\201910131655443_AddPhoto1.Designer.cs">
-      <DependentUpon>201910131655443_AddPhoto1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910251232022_25.10.02.cs" />
-    <Compile Include="Migrations\201910251232022_25.10.02.Designer.cs">
-      <DependentUpon>201910251232022_25.10.02.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910281428374_28.10.01.cs" />
-    <Compile Include="Migrations\201910281428374_28.10.01.Designer.cs">
-      <DependentUpon>201910281428374_28.10.01.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910281450552_28.10.02.cs" />
-    <Compile Include="Migrations\201910281450552_28.10.02.Designer.cs">
-      <DependentUpon>201910281450552_28.10.02.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910301846078_30.10.01.cs" />
-    <Compile Include="Migrations\201910301846078_30.10.01.Designer.cs">
-      <DependentUpon>201910301846078_30.10.01.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910301937491_30.10.02.cs" />
-    <Compile Include="Migrations\201910301937491_30.10.02.Designer.cs">
-      <DependentUpon>201910301937491_30.10.02.cs</DependentUpon>
+    <Compile Include="Migrations\201910311743059_31.10.01.cs" />
+    <Compile Include="Migrations\201910311743059_31.10.01.Designer.cs">
+      <DependentUpon>201910311743059_31.10.01.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -502,62 +434,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Scripts\index.d.ts" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201910101303055_NewBD.resx">
-      <DependentUpon>201910101303055_NewBD.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910102042249_AddInit.resx">
-      <DependentUpon>201910102042249_AddInit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910110824570_aspUser.resx">
-      <DependentUpon>201910110824570_aspUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910111210514_aspUser1.resx">
-      <DependentUpon>201910111210514_aspUser1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910121052384_User2.resx">
-      <DependentUpon>201910121052384_User2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910121249039_User3.resx">
-      <DependentUpon>201910121249039_User3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910122202106_transac.resx">
-      <DependentUpon>201910122202106_transac.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910122214398_transac1.resx">
-      <DependentUpon>201910122214398_transac1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910122254051_transac2.resx">
-      <DependentUpon>201910122254051_transac2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910122310263_transac3.resx">
-      <DependentUpon>201910122310263_transac3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910131344538_transac4.resx">
-      <DependentUpon>201910131344538_transac4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910131649150_AddPhoto.resx">
-      <DependentUpon>201910131649150_AddPhoto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910131655443_AddPhoto1.resx">
-      <DependentUpon>201910131655443_AddPhoto1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910251232022_25.10.02.resx">
-      <DependentUpon>201910251232022_25.10.02.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910281428374_28.10.01.resx">
-      <DependentUpon>201910281428374_28.10.01.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910281450552_28.10.02.resx">
-      <DependentUpon>201910281450552_28.10.02.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910301846078_30.10.01.resx">
-      <DependentUpon>201910301846078_30.10.01.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910301937491_30.10.02.resx">
-      <DependentUpon>201910301937491_30.10.02.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201910311743059_31.10.01.resx">
+      <DependentUpon>201910311743059_31.10.01.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

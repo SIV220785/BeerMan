@@ -3,7 +3,7 @@ namespace BeerMan.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class NewBD : DbMigration
+    public partial class _311001 : DbMigration
     {
         public override void Up()
         {
@@ -26,15 +26,15 @@ namespace BeerMan.Migrations
                         PasswordHash = c.String(),
                         SecurityStamp = c.String(),
                         PhoneNumber = c.String(),
-                        PhoneNumberConfirmed = c.Boolean(nullable: false),
-                        TwoFactorEnabled = c.Boolean(nullable: false),
+                        PhoneNumberConfirmed = c.Boolean(),
+                        TwoFactorEnabled = c.Boolean(),
                         LockoutEndDateUtc = c.DateTime(),
-                        LockoutEnabled = c.Boolean(nullable: false),
-                        AccessFailedCount = c.Int(nullable: false),
+                        LockoutEnabled = c.Boolean(),
+                        AccessFailedCount = c.Int(),
                         NickName = c.String(),
                         FirstName = c.String(),
                         LastName = c.String(),
-                        BirthDay = c.DateTime(nullable: false),
+                        BirthDay = c.DateTime(),
                         UserName = c.String(nullable: false, maxLength: 256),
                         Party_Id = c.Int(),
                         AspNetUsers_Id = c.String(maxLength: 128),
@@ -101,18 +101,20 @@ namespace BeerMan.Migrations
                 "dbo.Orders",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false),
                         Cost = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        CreateDate = c.DateTime(nullable: false),
-                        UserID = c.Int(nullable: false),
-                        PartyId = c.Int(nullable: false),
-                        AspNetUsers_Id = c.String(maxLength: 128),
+                        CreateDate = c.DateTime(),
+                        IsPayment = c.Boolean(nullable: false),
+                        AspNetUsersID = c.String(maxLength: 128),
+                        PartyId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.AspNetUsers_Id)
-                .ForeignKey("dbo.Parties", t => t.PartyId, cascadeDelete: true)
-                .Index(t => t.PartyId)
-                .Index(t => t.AspNetUsers_Id);
+                .ForeignKey("dbo.AspNetUsers", t => t.AspNetUsersID)
+                .ForeignKey("dbo.Parties", t => t.PartyId)
+                .ForeignKey("dbo.Transactions", t => t.Id)
+                .Index(t => t.Id)
+                .Index(t => t.AspNetUsersID)
+                .Index(t => t.PartyId);
             
             CreateTable(
                 "dbo.Drinks",
@@ -121,30 +123,22 @@ namespace BeerMan.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
                         Cost = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        FotoId = c.Int(nullable: false),
-                        OrderId = c.Int(nullable: false),
+                        Count = c.Int(),
+                        PhotoId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Photos", t => t.FotoId, cascadeDelete: true)
-                .ForeignKey("dbo.Orders", t => t.OrderId, cascadeDelete: true)
-                .Index(t => t.FotoId)
-                .Index(t => t.OrderId);
+                .ForeignKey("dbo.Photos", t => t.PhotoId)
+                .Index(t => t.PhotoId);
             
             CreateTable(
                 "dbo.Photos",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Link = c.String(),
-                        UserID = c.Int(nullable: false),
-                        AspNetUsers_Id = c.String(maxLength: 128),
-                        Party_Id = c.Int(),
+                        Name = c.String(),
+                        Image = c.Binary(),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.AspNetUsers_Id)
-                .ForeignKey("dbo.Parties", t => t.Party_Id)
-                .Index(t => t.AspNetUsers_Id)
-                .Index(t => t.Party_Id);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Foods",
@@ -153,14 +147,12 @@ namespace BeerMan.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
                         Cost = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        FotoId = c.Int(nullable: false),
-                        OrderId = c.Int(nullable: false),
+                        Count = c.Int(),
+                        PhotoId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Photos", t => t.FotoId, cascadeDelete: true)
-                .ForeignKey("dbo.Orders", t => t.OrderId, cascadeDelete: true)
-                .Index(t => t.FotoId)
-                .Index(t => t.OrderId);
+                .ForeignKey("dbo.Photos", t => t.PhotoId)
+                .Index(t => t.PhotoId);
             
             CreateTable(
                 "dbo.Parties",
@@ -181,48 +173,29 @@ namespace BeerMan.Migrations
                 .Index(t => t.AspNetUsers_Id);
             
             CreateTable(
-                "dbo.Wallets",
-                c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.Id)
-                .Index(t => t.Id);
-            
-            CreateTable(
-                "dbo.Coins",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Amount = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Currency = c.String(),
-                        WalletId = c.Int(nullable: false),
-                        Wallet_Id = c.String(maxLength: 128),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Wallets", t => t.Wallet_Id)
-                .Index(t => t.Wallet_Id);
-            
-            CreateTable(
                 "dbo.Transactions",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        TransactionDate = c.DateTime(nullable: false),
+                        TransactionDate = c.DateTime(),
                         Amount = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Currency = c.String(),
                         Type = c.Int(nullable: false),
-                        WalletId = c.Int(nullable: false),
-                        OrderId = c.Int(nullable: false),
-                        Wallet_Id = c.String(maxLength: 128),
+                        WalletId = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Orders", t => t.OrderId, cascadeDelete: true)
-                .ForeignKey("dbo.Wallets", t => t.Wallet_Id)
-                .Index(t => t.OrderId)
-                .Index(t => t.Wallet_Id);
-                        
+                .ForeignKey("dbo.Wallets", t => t.WalletId)
+                .Index(t => t.WalletId);
+            
+            CreateTable(
+                "dbo.Wallets",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Coins = c.Decimal(nullable: false, precision: 18, scale: 2),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.AspNetUsers", t => t.Id)
+                .Index(t => t.Id);                       
             
             CreateTable(
                 "dbo.DeliveryOrderAspNetUsers",
@@ -236,6 +209,32 @@ namespace BeerMan.Migrations
                 .ForeignKey("dbo.AspNetUsers", t => t.AspNetUsers_Id, cascadeDelete: true)
                 .Index(t => t.DeliveryOrder_Id)
                 .Index(t => t.AspNetUsers_Id);
+            
+            CreateTable(
+                "dbo.DrinkOrders",
+                c => new
+                    {
+                        Drink_Id = c.Int(nullable: false),
+                        Order_Id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Drink_Id, t.Order_Id })
+                .ForeignKey("dbo.Drinks", t => t.Drink_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Orders", t => t.Order_Id, cascadeDelete: true)
+                .Index(t => t.Drink_Id)
+                .Index(t => t.Order_Id);
+            
+            CreateTable(
+                "dbo.FoodOrders",
+                c => new
+                    {
+                        Food_Id = c.Int(nullable: false),
+                        Order_Id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Food_Id, t.Order_Id })
+                .ForeignKey("dbo.Foods", t => t.Food_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Orders", t => t.Order_Id, cascadeDelete: true)
+                .Index(t => t.Food_Id)
+                .Index(t => t.Order_Id);
             
             CreateTable(
                 "dbo.AspNetUserRoles",
@@ -257,22 +256,21 @@ namespace BeerMan.Migrations
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.Wallets", "Id", "dbo.AspNetUsers");
-            DropForeignKey("dbo.Transactions", "Wallet_Id", "dbo.Wallets");
-            DropForeignKey("dbo.Transactions", "OrderId", "dbo.Orders");
-            DropForeignKey("dbo.Coins", "Wallet_Id", "dbo.Wallets");
             DropForeignKey("dbo.Parties", "AspNetUsers_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUsers", "AspNetUsers_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.DeliveryOrders", "OrderId", "dbo.Orders");
-            DropForeignKey("dbo.Photos", "Party_Id", "dbo.Parties");
+            DropForeignKey("dbo.Orders", "Id", "dbo.Transactions");
+            DropForeignKey("dbo.Transactions", "WalletId", "dbo.Wallets");
             DropForeignKey("dbo.Orders", "PartyId", "dbo.Parties");
             DropForeignKey("dbo.AspNetUsers", "Party_Id", "dbo.Parties");
             DropForeignKey("dbo.Parties", "AspNetUser_Id", "dbo.AspNetUsers");
-            DropForeignKey("dbo.Foods", "OrderId", "dbo.Orders");
-            DropForeignKey("dbo.Foods", "FotoId", "dbo.Photos");
-            DropForeignKey("dbo.Drinks", "OrderId", "dbo.Orders");
-            DropForeignKey("dbo.Drinks", "FotoId", "dbo.Photos");
-            DropForeignKey("dbo.Photos", "AspNetUsers_Id", "dbo.AspNetUsers");
-            DropForeignKey("dbo.Orders", "AspNetUsers_Id", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Drinks", "PhotoId", "dbo.Photos");
+            DropForeignKey("dbo.Foods", "PhotoId", "dbo.Photos");
+            DropForeignKey("dbo.FoodOrders", "Order_Id", "dbo.Orders");
+            DropForeignKey("dbo.FoodOrders", "Food_Id", "dbo.Foods");
+            DropForeignKey("dbo.DrinkOrders", "Order_Id", "dbo.Orders");
+            DropForeignKey("dbo.DrinkOrders", "Drink_Id", "dbo.Drinks");
+            DropForeignKey("dbo.Orders", "AspNetUsersID", "dbo.AspNetUsers");
             DropForeignKey("dbo.DeliveryOrders", "CourierId", "dbo.Couriers");
             DropForeignKey("dbo.DeliveryOrderAspNetUsers", "AspNetUsers_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.DeliveryOrderAspNetUsers", "DeliveryOrder_Id", "dbo.DeliveryOrders");
@@ -280,22 +278,21 @@ namespace BeerMan.Migrations
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
+            DropIndex("dbo.FoodOrders", new[] { "Order_Id" });
+            DropIndex("dbo.FoodOrders", new[] { "Food_Id" });
+            DropIndex("dbo.DrinkOrders", new[] { "Order_Id" });
+            DropIndex("dbo.DrinkOrders", new[] { "Drink_Id" });
             DropIndex("dbo.DeliveryOrderAspNetUsers", new[] { "AspNetUsers_Id" });
             DropIndex("dbo.DeliveryOrderAspNetUsers", new[] { "DeliveryOrder_Id" });
-            DropIndex("dbo.Transactions", new[] { "Wallet_Id" });
-            DropIndex("dbo.Transactions", new[] { "OrderId" });
-            DropIndex("dbo.Coins", new[] { "Wallet_Id" });
             DropIndex("dbo.Wallets", new[] { "Id" });
+            DropIndex("dbo.Transactions", new[] { "WalletId" });
             DropIndex("dbo.Parties", new[] { "AspNetUsers_Id" });
             DropIndex("dbo.Parties", new[] { "AspNetUser_Id" });
-            DropIndex("dbo.Foods", new[] { "OrderId" });
-            DropIndex("dbo.Foods", new[] { "FotoId" });
-            DropIndex("dbo.Photos", new[] { "Party_Id" });
-            DropIndex("dbo.Photos", new[] { "AspNetUsers_Id" });
-            DropIndex("dbo.Drinks", new[] { "OrderId" });
-            DropIndex("dbo.Drinks", new[] { "FotoId" });
-            DropIndex("dbo.Orders", new[] { "AspNetUsers_Id" });
+            DropIndex("dbo.Foods", new[] { "PhotoId" });
+            DropIndex("dbo.Drinks", new[] { "PhotoId" });
             DropIndex("dbo.Orders", new[] { "PartyId" });
+            DropIndex("dbo.Orders", new[] { "AspNetUsersID" });
+            DropIndex("dbo.Orders", new[] { "Id" });
             DropIndex("dbo.DeliveryOrders", new[] { "OrderId" });
             DropIndex("dbo.DeliveryOrders", new[] { "CourierId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
@@ -303,11 +300,12 @@ namespace BeerMan.Migrations
             DropIndex("dbo.AspNetUsers", new[] { "AspNetUsers_Id" });
             DropIndex("dbo.AspNetUsers", new[] { "Party_Id" });
             DropTable("dbo.AspNetUserRoles");
+            DropTable("dbo.FoodOrders");
+            DropTable("dbo.DrinkOrders");
             DropTable("dbo.DeliveryOrderAspNetUsers");
             DropTable("dbo.__MigrationHistory");
-            DropTable("dbo.Transactions");
-            DropTable("dbo.Coins");
             DropTable("dbo.Wallets");
+            DropTable("dbo.Transactions");
             DropTable("dbo.Parties");
             DropTable("dbo.Foods");
             DropTable("dbo.Photos");

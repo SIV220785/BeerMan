@@ -102,7 +102,7 @@ namespace BeerMan.Controllers
                                 transaction.TransactionDate = DateTime.Now;
                                 transaction.Amount = order.Cost;
                                 order.IsPayment = true;
-                                transaction.Orders.Add(order);
+                                transaction.Order = order;
                                 user.Wallet.Coins -= order.Cost;
                                 user.Wallet.Transactions.Add(transaction);
                                 break;

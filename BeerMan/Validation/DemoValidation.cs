@@ -8,7 +8,7 @@ namespace BeerMan.Validation
         public DemoValidation()
         {
 
-            RuleFor(r => r.Coins).NotNull().WithMessage("Значение не должно быть пустым! ");
+            //RuleFor(r => r.Coins).NotNull().WithMessage("Значение не должно быть пустым! ");
             //RuleFor(r => r.AddMoney).NotNull().Must(r => r.Value <= 0).WithMessage("Сумма должна быть больше 0! ");
             //RuleFor(r => r.num3).Must(num => num % 5 == 0).WithMessage("Error num % 5 !=0");
 
